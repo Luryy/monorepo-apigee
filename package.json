@@ -8,5 +8,8 @@
     "packages": [
       "packages/*"
     ]
+  },
+  "devDependencies": {
+    "@monorepo/eslint-config": "*"
   }
 }
