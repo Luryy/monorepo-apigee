@@ -1,5 +1,5 @@
 {
-  "name": "ms-private",
+  "name": "@monorepo/ms-private",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
