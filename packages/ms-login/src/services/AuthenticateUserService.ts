@@ -7,13 +7,9 @@ interface RequestDTO {
   password: string;
 }
 
-interface Response {
-  user: string;
-  token: string;
-}
-
 class AuthenticateUsersService {
   public execute({ email, password }: RequestDTO): string {
+    if (!password) return 'Invailid to acess token';
 
     const { secret, expiresIn } = authConfig.jwt;
 
