@@ -1,14 +1,21 @@
 import express from 'express';
 
+import AuthenticateUserService from './services/AuthenticateUserService';
+
 const app = express();
 
 const routes = express.Router();
 
 
-routes.get('/login', (request, response) => {
+routes.post('/login', (request, response) => {
+    const { email, password } = request.body;
+
+    const authenticateUserService = new AuthenticateUserService();
+
+    const token = authenticateUserService.execute({email, password});
+
     return response.json({
-        mensage: 'ok',
-        ms: 'login'
+        token
     })
 })
 
