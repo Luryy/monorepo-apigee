@@ -13,10 +13,14 @@ class AuthenticateUsersService {
 
     const { secret, expiresIn } = authConfig.jwt;
 
-    const token = sign({}, secret, {
-      subject: email,
-      expiresIn,
-    });
+    const token = sign(
+      { roles: ['manage-vouchers', 'manage-channels'] },
+      secret,
+      {
+        subject: email,
+        expiresIn,
+      },
+    );
 
     return token;
   }
