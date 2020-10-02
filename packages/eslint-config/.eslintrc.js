@@ -22,6 +22,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     'no-underscore-dangle': 'off',
+    'consistent-return': "off",
     'prettier/prettier': 'error',
     'class-methods-use-this': 'off',
     '@typescript-eslint/camelcase': 'off',
