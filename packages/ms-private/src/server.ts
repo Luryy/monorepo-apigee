@@ -17,6 +17,17 @@ routes.get(
   },
 );
 
+routes.get(
+  '/private/manage-inhabitant',
+  hasPermissions(['manage-inhabitant']),
+  (request, response) => {
+    return response.json({
+      mensage: 'ok',
+      ms: 'private/manage-inhabitant',
+    });
+  },
+);
+
 app.use(express.json());
 app.use(routes);
 
