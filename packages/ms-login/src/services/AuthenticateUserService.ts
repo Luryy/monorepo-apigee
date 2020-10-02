@@ -7,22 +7,25 @@ interface RequestDTO {
   password: string;
 }
 
+interface ResponseDTO {
+  token: string;
+  roles: string[];
+}
+
 class AuthenticateUsersService {
-  public execute({ email, password }: RequestDTO): string {
+  public execute({ email, password }: RequestDTO): ResponseDTO | string {
     if (!password) return 'Invailid to acess token';
 
     const { secret, expiresIn } = authConfig.jwt;
 
-    const token = sign(
-      { roles: ['manage-vouchers', 'manage-channels'] },
-      secret,
-      {
-        subject: email,
-        expiresIn,
-      },
-    );
+    const roles = ['manage-vouchers', 'manage-channels'];
 
-    return token;
+    const token = sign({ roles }, secret, {
+      subject: email,
+      expiresIn,
+    });
+
+    return { token, roles };
   }
 }
 
