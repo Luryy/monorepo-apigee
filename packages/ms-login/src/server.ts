@@ -11,11 +11,17 @@ routes.post('/login', (request, response) => {
 
   const authenticateUserService = new AuthenticateUserService();
 
-  const token = authenticateUserService.execute({ email, password });
+  const responseAuth = authenticateUserService.execute({ email, password });
 
-  return response.json({
-    token,
-  });
+  if (typeof responseAuth !== 'string') {
+    const { token, roles } = responseAuth;
+    return response.json({
+      token,
+      roles,
+    });
+  }
+
+  response.json({ error: response });
 });
 
 app.use(express.json());
